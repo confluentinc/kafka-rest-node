@@ -48,7 +48,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([null], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], null, null, null);
+        assertMessageEquals(test, msgs[0], null, null);
         test.done();
     },
 
@@ -56,7 +56,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([MSG], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.done();
     },
 
@@ -64,7 +64,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([new Buffer(MSG)], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.done();
     },
 
@@ -72,7 +72,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([{'value': MSG}], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.done();
     },
 
@@ -80,7 +80,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([{'value': MSG, 'key': KEY}], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], MSG_ENC, KEY_ENC, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, KEY_ENC);
         test.done();
     },
 
@@ -88,7 +88,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([{'value': MSG, 'partition': 0}], true),
                     msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, 0);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.done();
     },
 
@@ -103,7 +103,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([{'value': MSG, 'key': KEY, 'partition': 0}], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], MSG_ENC, KEY_ENC, 0);
+        assertMessageEquals(test, msgs[0], MSG_ENC, KEY_ENC);
         test.done();
     },
 
@@ -116,7 +116,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([MSG, MSG, MSG], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 3);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.done();
     },
 
@@ -124,7 +124,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([MSG, MSG, MSG, CB], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 3);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.strictEqual(cb, CB);
         test.done();
     },
@@ -141,7 +141,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([[MSG, MSG, MSG]], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 3);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.done();
     },
 
@@ -149,7 +149,7 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([[MSG, MSG, MSG], CB], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 3);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
         test.strictEqual(cb, CB);
         test.done();
     },
@@ -160,10 +160,10 @@ exports.testNormalizeFromArguments = {
         var result = messages.normalizeFromArguments([MSG, new Buffer(MSG), {'value':MSG,'key':KEY}, {'value':MSG,'partition':0}, CB], true),
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(msgs.length, 4);
-        assertMessageEquals(test, msgs[0], MSG_ENC, null, null);
-        assertMessageEquals(test, msgs[1], MSG_ENC, null, null);
-        assertMessageEquals(test, msgs[2], MSG_ENC, KEY_ENC, null);
-        assertMessageEquals(test, msgs[3], MSG_ENC, null, 0);
+        assertMessageEquals(test, msgs[0], MSG_ENC, null);
+        assertMessageEquals(test, msgs[1], MSG_ENC, null);
+        assertMessageEquals(test, msgs[2], MSG_ENC, KEY_ENC);
+        assertMessageEquals(test, msgs[3], MSG_ENC, null);
         test.strictEqual(cb, CB);
         test.done();
     },
@@ -193,7 +193,7 @@ exports.testNormalizeFromArguments = {
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(schemas[1], VALUE_SCHEMA);
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], AVRO_MSG, null, 0);
+        assertMessageEquals(test, msgs[0], AVRO_MSG, null);
         test.done();
     },
 
@@ -203,7 +203,7 @@ exports.testNormalizeFromArguments = {
             msgs = result[0], schemas = result[1], cb = result[2];
         test.strictEqual(schemas[1], VALUE_SCHEMA);
         test.strictEqual(msgs.length, 1);
-        assertMessageEquals(test, msgs[0], AVRO_MSG, null, null);
+        assertMessageEquals(test, msgs[0], AVRO_MSG, null);
         test.done();
     }
 
